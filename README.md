@@ -1,6 +1,6 @@
 # Unified Campus Intelligence Dashboard
 
-**Live Demo**: [https://campus-intelligence-dashboard-1.onrender.com](https://campus-intelligence-dashboard-1.onrender.com)
+**Live Demo**: [https://campus-intelligence-dashboard-1.onrender.com](https://campus-intelligence-dashboard-2.onrender.com/)
 
 A modern, highly responsive, glassmorphic web dashboard that centralizes campus information portals using independent **Model Context Protocol (MCP)** microservices. Instead of replicating database stores, this architecture uses real-time JSON-RPC communication over standard I/O (stdio) to query live campus data sources dynamically based on natural language queries or interactive UI widgets.
 
