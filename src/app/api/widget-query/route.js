@@ -19,7 +19,27 @@ export async function POST(req) {
     // Call the MCP tool via subprocess stdio
     const mcpResponse = await mcpClientManager.executeTool(toolName, args || {});
 
-    // Return the raw response from MCP server
+    // Un-wrap the MCP standard envelope to return the raw data payload to frontend widgets
+    if (mcpResponse && mcpResponse.content && Array.isArray(mcpResponse.content)) {
+      const firstContent = mcpResponse.content[0];
+      if (firstContent) {
+        if (firstContent.type === 'text') {
+          try {
+            // If it's a serialized JSON string, parse it
+            const parsed = JSON.parse(firstContent.text);
+            return NextResponse.json(parsed);
+          } catch (e) {
+            // Otherwise, return it as plain text
+            return NextResponse.json(firstContent.text);
+          }
+        }
+        // If it's a custom JSON object array from our server (where content = result)
+        if (firstContent.type === undefined) {
+          return NextResponse.json(mcpResponse.content);
+        }
+      }
+    }
+
     return NextResponse.json(mcpResponse);
   } catch (err) {
     console.error(`[API Widget Query Error for ${req.body?.toolName}]:`, err);
