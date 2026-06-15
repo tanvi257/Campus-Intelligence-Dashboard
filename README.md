@@ -1,12 +1,14 @@
 # Unified Campus Intelligence Dashboard
 
+**Live Demo**: [https://campus-intelligence-dashboard-1.onrender.com](https://campus-intelligence-dashboard-1.onrender.com)
+
 A modern, highly responsive, glassmorphic web dashboard that centralizes campus information portals using independent **Model Context Protocol (MCP)** microservices. Instead of replicating database stores, this architecture uses real-time JSON-RPC communication over standard I/O (stdio) to query live campus data sources dynamically based on natural language queries or interactive UI widgets.
 
 ---
 
 ## 🌟 Features
 
-* **AI Campus Assistant Drawer**: A chatbot powered by Gemini (`gemini-1.5-flash`) that parses student queries and dynamically executes function calling across connected MCP servers.
+* **AI Campus Assistant Drawer**: A chatbot powered by Gemini (`gemini-2.5-flash`) that parses student queries and dynamically executes function calling across connected MCP servers.
 * **4 Independent MCP Servers (Microservices)**:
   * **Library Server**: Query book listings, check real-time copies availability, and issue instant student checkouts.
   * **Cafeteria Server**: Fetch food menus, check chef recommendations, and retrieve live queue lengths and estimated wait times (computed dynamically based on the current hour).
