@@ -1,0 +1,371 @@
+.dashboardContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(157, 78, 221, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(0, 245, 212, 0.05) 0px, transparent 50%);
+  padding: 1.5rem;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  margin-bottom: 1.5rem;
+  background: rgba(15, 17, 26, 0.5);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-family: var(--font-family-title);
+  color: var(--bg-primary);
+  font-size: 1.25rem;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+}
+
+.titleContainer h1 {
+  font-family: var(--font-family-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(120deg, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.headerMeta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.statusIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-glass);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.statusDot.disconnected {
+  background-color: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink);
+}
+
+.settingsButton {
+  background: transparent;
+  border: 1px solid var(--border-glass-hover);
+  color: var(--text-primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-family: var(--font-family-title);
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.settingsButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+}
+
+/* Dashboard Grid Layout */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+@media (max-width: 1100px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.widgetsColumn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(360px, auto);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .widgetsColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Widget Styles */
+.widgetCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.widgetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-glass);
+  padding-bottom: 0.75rem;
+}
+
+.widgetTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-family-title);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.widgetTitle svg {
+  color: var(--accent-purple);
+}
+
+.widgetBadge {
+  font-size: 0.75rem;
+  background: rgba(157, 78, 221, 0.15);
+  color: var(--accent-purple);
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(157, 78, 221, 0.3);
+}
+
+.widgetContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+/* UI Elements inside widgets */
+.inputGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  color: var(--text-primary);
+  font-family: var(--font-family-body);
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-purple);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.button {
+  background: linear-gradient(135deg, var(--accent-purple), #8a2be2);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-family: var(--font-family-title);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--accent-purple-glow);
+}
+
+.buttonSecondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-family-title);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.buttonSecondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--border-glass-hover);
+}
+
+/* Specific Cafeteria elements */
+.crowdContainer {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crowdMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.crowdLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.crowdVal {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: var(--font-family-title);
+}
+
+.crowdVal.high {
+  color: var(--accent-pink);
+}
+
+.crowdVal.moderate {
+  color: var(--accent-blue);
+}
+
+.crowdVal.low {
+  color: var(--accent-cyan);
+}
+
+/* Settings Overlay Drawer */
+.settingsDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  max-width: 90vw;
+  background: rgba(10, 12, 22, 0.95);
+  border-left: 1px solid var(--border-glass-hover);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  animation: slideInRight var(--transition-normal);
+}
+
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.drawerTitle {
+  font-family: var(--font-family-title);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: var(--text-primary);
+}
+
+/* Form Styles inside drawer */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Toast container */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: #1e293b;
+  border-left: 4px solid var(--accent-cyan);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1001;
+  animation: fadeIn 0.3s ease-out;
+}
