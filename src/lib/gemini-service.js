@@ -99,9 +99,9 @@ export async function chatWithMcp(apiKey, userMessage, chatHistory = [], systemI
   let iterations = 0;
 
   // Function execution loop
-  while (result.response.functionCalls && result.response.functionCalls.length > 0 && iterations < maxIterations) {
+  let functionCalls = result.response.functionCalls ? result.response.functionCalls() : undefined;
+  while (functionCalls && functionCalls.length > 0 && iterations < maxIterations) {
     iterations++;
-    const functionCalls = result.response.functionCalls;
     console.log(`[Gemini Service] Model requested ${functionCalls.length} tool calls (Iteration ${iterations})`);
     
     const functionResponses = [];
@@ -153,6 +153,7 @@ export async function chatWithMcp(apiKey, userMessage, chatHistory = [], systemI
       functionResponse: fr
     }));
     result = await chat.sendMessage(responseParts);
+    functionCalls = result.response.functionCalls ? result.response.functionCalls() : undefined;
   }
 
   responseText = result.response.text();
