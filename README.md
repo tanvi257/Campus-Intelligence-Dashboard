@@ -6,7 +6,7 @@ A modern, highly responsive, glassmorphic web dashboard that centralizes campus 
 
 ---
 
-## 🌟 Features
+## Features
 
 * **AI Campus Assistant Drawer**: A chatbot powered by Gemini (`gemini-2.5-flash`) that parses student queries and dynamically executes function calling across connected MCP servers.
 * **4 Independent MCP Servers (Microservices)**:
@@ -20,7 +20,7 @@ A modern, highly responsive, glassmorphic web dashboard that centralizes campus 
 
 ---
 
-## 🏗️ Architecture Flow
+##  Architecture Flow
 
 ```mermaid
 graph TD
@@ -48,7 +48,7 @@ graph TD
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Frontend Framework**: Next.js (App Router)
 * **Styling**: Vanilla CSS Modules (Glassmorphic dark design system)
@@ -57,7 +57,7 @@ graph TD
 
 ---
 
-## 🚀 Setup & Execution
+##  Setup & Execution
 
 ### Prerequisites
 * **Node.js**: `v18.0.0` or higher (verified on Node `v24.14.0`)
@@ -91,7 +91,7 @@ graph TD
 
 ---
 
-## 📝 Demo Sample Queries
+##  Demo Sample Queries
 
 Type these in the AI Assistant to watch tool-routing execute in the terminal log:
 * *"Is Introduction to Algorithms available in the library?"*
