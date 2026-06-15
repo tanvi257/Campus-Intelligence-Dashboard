@@ -22,26 +22,26 @@ A modern, highly responsive, glassmorphic web dashboard that centralizes campus 
 
 ```mermaid
 graph TD
-  User([Student UI Dashboard]) -->|User Chat Prompt| NextAPIChat[/api/chat Route]
-  User -->|Widget Filter / Click| NextAPIWidget[/api/widget-query Route]
+  User["Student UI Dashboard"] -->|User Chat Prompt| NextAPIChat["/api/chat Route"]
+  User -->|Widget Filter / Click| NextAPIWidget["/api/widget-query Route"]
   
-  subgraph NextJS Backend [Next.js Server API Layer]
-    NextAPIChat --> GeminiService[Gemini Orchestrator]
-    GeminiService -->|Tool Routing| McpManager[MCP Client Manager]
+  subgraph NextJS Backend ["Next.js Server API Layer"]
+    NextAPIChat --> GeminiService["Gemini Orchestrator"]
+    GeminiService -->|Tool Routing| McpManager["MCP Client Manager"]
     NextAPIWidget -->|Direct Tool Call| McpManager
   end
   
-  subgraph MCP Microservices [Independent Subprocesses - Node.js stdio]
-    McpManager <-->|JSON-RPC Stdio Handshake & Calls| LibServer[Library MCP Server]
-    McpManager <-->|JSON-RPC Stdio Handshake & Calls| CafeServer[Cafeteria MCP Server]
-    McpManager <-->|JSON-RPC Stdio Handshake & Calls| EventServer[Events MCP Server]
-    McpManager <-->|JSON-RPC Stdio Handshake & Calls| AcadServer[Academics MCP Server]
+  subgraph MCP Microservices ["Independent Subprocesses - Node.js stdio"]
+    McpManager <-->|JSON-RPC Stdio Handshake & Calls| LibServer["Library MCP Server"]
+    McpManager <-->|JSON-RPC Stdio Handshake & Calls| CafeServer["Cafeteria MCP Server"]
+    McpManager <-->|JSON-RPC Stdio Handshake & Calls| EventServer["Events MCP Server"]
+    McpManager <-->|JSON-RPC Stdio Handshake & Calls| AcadServer["Academics MCP Server"]
   end
   
-  LibServer <-->|In-Memory Store| LibDB[(Library Catalog)]
-  CafeServer <-->|In-Memory Store| CafeDB[(Cafeteria Catalog)]
-  EventServer <-->|In-Memory Store| EventDB[(Events Roster)]
-  AcadServer <-->|In-Memory Store| AcadDB[(Academics Portal)]
+  LibServer <-->|In-Memory Store| LibDB["Library Catalog"]
+  CafeServer <-->|In-Memory Store| CafeDB["Cafeteria Catalog"]
+  EventServer <-->|In-Memory Store| EventDB["Events Roster"]
+  AcadServer <-->|In-Memory Store| AcadDB["Academics Portal"]
 ```
 
 ---
