@@ -249,3 +249,36 @@
   border-color: var(--accent-purple);
   color: var(--text-primary);
 }
+
+/* Collapsible Tool Call Summary Styles */
+.toolCallDetails {
+  margin: 0.35rem 0;
+  width: 100%;
+}
+
+.toolCallSummary {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.45rem 0.75rem;
+  background: rgba(157, 78, 221, 0.08);
+  border: 1px solid rgba(157, 78, 221, 0.15);
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  transition: background var(--transition-fast);
+  user-select: none;
+}
+
+.toolCallSummary:hover {
+  background: rgba(157, 78, 221, 0.15);
+}
+
+.toolCallSummary code {
+  color: var(--accent-cyan) !important;
+  background: rgba(6, 182, 212, 0.1);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  margin-left: 0.25rem;
+}

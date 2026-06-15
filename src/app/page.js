@@ -778,30 +778,29 @@ export default function Home() {
                 
                 {/* Display Tool call details if assistant used tools */}
                 {msg.toolCalls && msg.toolCalls.map((tc, tcIdx) => (
-                  <div key={tcIdx} className={chatStyles.toolCallContainer}>
-                    <div className={chatStyles.toolCallHeader}>
-                      <span className={chatStyles.serverBadge}>MCP ROUTING</span>
-                      <span className={`${chatStyles.toolStatus} ${chatStyles[tc.status || 'success']}`}>
+                  <details key={tcIdx} className={chatStyles.toolCallDetails}>
+                    <summary className={chatStyles.toolCallSummary}>
+                      <span>🔧 MCP Route: <code>{tc.name}</code></span>
+                      <span className={`${chatStyles.toolStatus} ${chatStyles[tc.status || 'success']}`} style={{ marginLeft: 'auto', fontSize: '0.7rem' }}>
                         {tc.status === 'running' ? 'EXECUTING...' : 'SUCCESS'}
                       </span>
+                    </summary>
+                    <div className={chatStyles.toolCallContainer} style={{ marginTop: '0.25rem' }}>
+                      {tc.args && (
+                        <div>
+                          <strong>Arguments:</strong> <code>{JSON.stringify(tc.args)}</code>
+                        </div>
+                      )}
+                      {tc.result && (
+                        <div className={chatStyles.toolDetails}>
+                          <strong>Live Data:</strong>
+                          <pre style={{ marginTop: '0.2rem', padding: '0.4rem', background: 'rgba(0,0,0,0.3)', borderRadius: '4px', overflowX: 'auto' }}>
+                            {tc.result.substring(0, 400)}{tc.result.length > 400 ? '...' : ''}
+                          </pre>
+                        </div>
+                      )}
                     </div>
-                    <div>
-                      <strong>Tool Call:</strong> <code>{tc.name}</code>
-                    </div>
-                    {tc.args && (
-                      <div>
-                        <strong>Arguments:</strong> <code>{JSON.stringify(tc.args)}</code>
-                      </div>
-                    )}
-                    {tc.result && (
-                      <div className={chatStyles.toolDetails}>
-                        <strong>Live Data:</strong>
-                        <pre style={{ marginTop: '0.2rem', padding: '0.4rem', background: 'rgba(0,0,0,0.3)', borderRadius: '4px', overflowX: 'auto' }}>
-                          {tc.result.substring(0, 400)}{tc.result.length > 400 ? '...' : ''}
-                        </pre>
-                      </div>
-                    )}
-                  </div>
+                  </details>
                 ))}
 
                 <div className={chatStyles.messageBubble} style={{ whiteSpace: 'pre-wrap' }}>
