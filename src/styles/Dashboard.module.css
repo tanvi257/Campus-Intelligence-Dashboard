@@ -209,6 +209,11 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.input option {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
 .button {
   background: linear-gradient(135deg, var(--accent-purple), #8a2be2);
   color: var(--text-primary);
